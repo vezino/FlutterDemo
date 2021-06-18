@@ -1,6 +1,7 @@
 # FlutterDemo
 
-#Virtual env create
+# Virtual env create
+
 python3 -m venv /Users/jmrivero/Dev_Boxes/FlutterDemo/restdjango
 
 Activate:
@@ -9,7 +10,7 @@ source bin/activate
 
 
 
-#restapi endpoint
+# restapi endpoint
 http://localhost:8000/api-token-auth/
 
 
