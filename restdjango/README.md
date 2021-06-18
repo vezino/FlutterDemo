@@ -43,10 +43,10 @@ python manage.py runserver [::]:8000 --noreload
 
 ## Get auth token
 curl -X POST -H "Content-Type: application/json" \
- -d '{"username":"loki","password":"Wh1te_strip35"}' \
+ -d '{"username":"loki","password":"Wh1te_strip3x"}' \
 http://localhost:8000/api-token-auth/
 
 
 ## Get user list
-curl -H "Authorization":"Token ddb95e01bc4a8c9af8a65742d91d72fbeb796054" http://localhost:8000/api/user/
+curl -H "Authorization":"Token ddb95e01bc4a8c9af8a65742d91d72fbeb79605x" http://localhost:8000/api/user/
 
