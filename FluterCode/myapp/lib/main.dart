@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
+import 'package:myapp/api_connection/api_connection.dart';
+import 'package:myapp/model/api_model.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -24,12 +27,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: MyHomePage(title: 'Login Page'),
-      home: LoginDemo(),
+      home: LoginDemo("Hola"),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+/* class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -45,9 +48,9 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
-}
+} */
 
-class _MyHomePageState extends State<MyHomePage> {
+/* class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -112,17 +115,25 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
+} */
 
 
 
 
 class LoginDemo extends StatefulWidget {
+  final String myVar;
+  const LoginDemo(this.myVar, {Key? key}): super(key: key);
   @override
   _LoginDemoState createState() => _LoginDemoState();
 }
 
 class _LoginDemoState extends State<LoginDemo> {
+  final userControler = TextEditingController();
+  final passControler = TextEditingController();
+  //late UserLogin myUserLogin;
+  final myUserLogin = UserLogin(username: "hola",password: "mundo");
+
+  //UserLogin userToValidate;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,10 +160,12 @@ class _LoginDemoState extends State<LoginDemo> {
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                controller: userControler,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
+                    
               ),
             ),
             Padding(
@@ -162,10 +175,13 @@ class _LoginDemoState extends State<LoginDemo> {
               child: TextField(
 
                 obscureText: true,
+                controller: passControler, 
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
-                    hintText: 'Enter secure password'),
+                    hintText: 'Enter secure password',
+                    
+                    ),
               ),
             ),
             TextButton(
@@ -184,8 +200,20 @@ class _LoginDemoState extends State<LoginDemo> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
+                  print(userControler.text);
+                  print(passControler.text);
+                  myUserLogin.username=userControler.text;
+                  myUserLogin.password=passControler.text;
+                  final myValidate = getToken(myUserLogin);
+                  print(myValidate.toString());
+                  if (myValidate.toString() != ""){
+                    Navigator.push(
                       context, MaterialPageRoute(builder: (_) => HomePage()));
+                      }
+                  else {
+                    Navigator.pop(context);
+                  }
+                    
                 },
                 child: Text(
                   'Login',
