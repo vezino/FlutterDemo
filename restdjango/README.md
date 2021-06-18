@@ -24,7 +24,7 @@ python3 -m venv /Users/jmrivero/Dev_Boxes/FlutterDemo/restdjango
 ## Create and migrate DB
 - python manage.py migrate
 
-## Create supersuser
+## Create Superuser
 - python manage.py createsuperuser
 
 ## Access Restapi Admin:
